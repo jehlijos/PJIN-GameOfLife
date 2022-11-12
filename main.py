@@ -1,0 +1,184 @@
+# this app generates matrix(list)(21x21) of 0s and 1s by clicking on buttons in it. square white buttons represents 0.
+# after clicking on white square it should change its color to black and 0 in matrix to 1
+# red quit button terminates the app and green start button saves the current matrix to txt file
+# Copperhead, Pentadecathlon and Pulsar buttons will create predefined combinations of black/white buttons and 1/1 in matrix
+# gbtn and rbtn are user inputs (scales) for saving number of generations and random numbers to txt file
+
+
+# import
+import matlab.engine
+import tkinter as tk
+from tkinter import *
+import webbrowser
+from functools import partial
+import time
+
+# tkinter window
+root = tk.Tk()
+root.geometry("700x700")  # resolution of window after opening the app
+root.title("Game of life")
+root.iconbitmap("icon.ico")
+
+
+
+canvas = tk.Canvas(root, height=201, width=201)
+canvas.grid(columnspan=21, rowspan=21)  # grid for 21x21 buttons
+
+
+
+A = []        # matrix to save (list)
+btn_r = {}  # dictionary of buttons
+
+
+def click(num):  # function for clicking on squares, changing 0 to 1 / 1 to 0 in matrix A and colors of the pressed buttons
+    if A[num] == 0:
+       A[num] = 1
+       btn_r[num].configure(bg="black", fg="white")
+    else:
+       A[num] = 0
+       btn_r[num].configure(bg = "white", fg="black")
+
+
+for ctr in range(21*21):  # creating buttons
+    rw, col = divmod(ctr, 21)
+    btn_r[ctr]=tk.Button(root, width=2, bg = "white",
+              command=partial(click, ctr))
+    btn_r[ctr].grid(column=col, row=rw, sticky="nsew")
+    A.append(0)
+
+
+def quit2():  # function to quit the app connected to red quit button
+    root.quit()
+
+
+def start():  # function to save starting configuration into txt file after pressing green start button
+    file = open("data.txt", "w")
+    content = str(A)
+    file.write(content)
+    file.close()
+    file = open("gens.txt", "w")
+    content2 = gen
+    file.write(content2)
+    file.close()
+    file = open("rand.txt", "w")
+    content3 = rnd
+    file.write(content3)
+    file.close()
+    time.sleep(1)
+    eng = matlab.engine.start_matlab()
+    eng.game_of_life(nargout=0)
+    print(A)
+
+
+def clear():  # function to set all buttons to white and all numbers in matrix A to 0
+    A = []
+    for x in range(21*21):
+        btn_r[x].configure(bg="white", fg="black")
+        A.append(0)
+
+
+def info():  # function that opens html with help
+    webbrowser.open("info.html")
+
+
+def penta():  # function that generates predefined configuration called Pentadecathlon
+    global A
+    A = []
+    for x in range(21*21):
+        btn_r[x].configure(bg="white", fg="black")
+        A.append(0)
+    list = [197,198,199,200,201,202,203,204,218,220,221,222,223,225,239,240,241,242,243,244,245,246]
+    for y in range(len(list)):
+        A[list[y]] = 1
+        btn_r[list[y]].configure(bg="black", fg="white")
+
+
+def copper():  # function that generates predefined configuration called Copperhead
+    global A
+    A = []
+    for x in range(21*21):
+        btn_r[x].configure(bg="white", fg="black")
+        A.append(0)
+    list = [175,176,195,198,215,216,219,220,236,237,240,241,257,259,260,262,280,281,299,304,319,320,325,326,385,386,405,
+            408,426,429]
+    for y in range(len(list)):
+        A[list[y]] = 1
+        btn_r[list[y]].configure(bg="black", fg="white")
+
+
+def pulsar():  # function that generates predefined configuration called Pulsar
+    global A
+    A = []
+    for x in range(21*21):
+        btn_r[x].configure(bg="white", fg="black")
+        A.append(0)
+    list = [90,91,92,96,97,98,130,135,137,142,151,156,158,163,172,177,179,184,195,196,197,201,202,203,237,238,239,243,
+            244,245,256,261,263,268,277,282,284,289,298,303,305,310,342,343,344,348,349,350]
+    for y in range(len(list)):
+        A[list[y]] = 1
+        btn_r[list[y]].configure(bg="black", fg="white")
+
+
+# START BUTTON
+start_btn = tk.Button(root, width=12, height=2, text="START", font="Raleway", bg="#00FF13", command=start)
+start_btn.place(x=550, y=0)
+
+# INFO BUTTON
+info_btn = tk.Button(root, width=12, height=2, text="INFO", font="Raleway", bg="#98FFF4", command=info)
+info_btn.place(x=550, y=70)
+
+# QUIT BUTTON
+quit_btn = tk.Button(root, width=12, height=2, text="QUIT", font="Raleway", bg="#FC5B30", command=quit2)
+quit_btn.place(x=550, y=490)
+
+# Pulsar BUTTON
+pulsar_btn = tk.Button(root, width=12, height=2, text="Pulsar", font="Raleway", command=pulsar)
+pulsar_btn.place(x=550, y=350)
+
+# Penta-decathlon BUTTON
+penta_btn = tk.Button(root, width=12, height=2, text="Pentadecathlon", font="Raleway", command=penta)
+penta_btn.place(x=550, y=280)
+
+# Copperhead BUTTON
+copper_btn = tk.Button(root, width=12, height=2, text="Copperhead", font="Raleway", command=copper)
+copper_btn.place(x=550, y=210)
+
+# CLEAR BUTTON
+clear_btn = tk.Button(root, width=12, height=2, text="CLEAR", font="Raleway", bg="#FFFFFF", command=clear)
+clear_btn.place(x=550, y=140)
+
+# informative text line
+T = tk.Text(root, height=2, width=30)
+T.insert(tk.END, "This app requires MATLAB R2022b to work.")
+T.place(x=0, y=675, width=330)
+
+# starting values of scales
+gg = DoubleVar()
+gen = str(5)
+rr = DoubleVar()
+rnd = str(0)
+
+
+def getgen():  # function to save value from generation scale
+    global gen
+    gen = str(gg.get())
+
+
+def getrnd():  # function to save value from random scale
+    global rnd
+    rnd = str(rr.get())
+
+
+# generation scale
+g = Scale(root, from_=5, to=50, orient=HORIZONTAL, label="number of generations", variable=gg)
+g.place(x=0, y=550, width=170)
+gbtn = tk.Button(root, width=3, height=1, text="save", font="Raleway", command=getgen)
+gbtn.place(x=30, y=610)
+
+# random scale
+r = Scale(root, from_=0, to=50, orient=HORIZONTAL, label="number of random alive cells",variable=rr)
+r.place(x=220, y=550, width=170)
+rbtn = tk.Button(root, width=3, height=1, text="save", font="Raleway", command=getrnd)
+rbtn.place(x=250, y=610)
+
+root.mainloop()
