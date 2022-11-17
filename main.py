@@ -3,7 +3,7 @@
 # red quit button terminates the app and green start button saves the current matrix to txt file
 # Copperhead, Pentadecathlon and Pulsar buttons will create predefined combinations of black/white buttons and 1/1 in matrix
 # gbtn and rbtn are user inputs (scales) for saving number of generations and random numbers to txt file
-
+# text input button opens new window to paste input from wiki
 
 # import
 import matlab.engine
@@ -20,10 +20,8 @@ root.title("Game of life")
 root.iconbitmap("icon.ico")
 
 
-
 canvas = tk.Canvas(root, height=201, width=201)
 canvas.grid(columnspan=21, rowspan=21)  # grid for 21x21 buttons
-
 
 
 A = []        # matrix to save (list)
@@ -48,8 +46,7 @@ for ctr in range(21*21):  # creating buttons
 
 
 def quit2():  # function to quit the app connected to red quit button
-    root.quit()
-
+        exit()
 
 def start():  # function to save starting configuration into txt file after pressing green start button
     file = open("data.txt", "w")
@@ -118,6 +115,49 @@ def pulsar():  # function that generates predefined configuration called Pulsar
         A[list[y]] = 1
         btn_r[list[y]].configure(bg="black", fg="white")
 
+###########################################################################################
+# TEXT INPUT WINDOW (text from wiki)
+###########################################################################################
+
+
+def textinput():
+    rootsec = tk.Tk()
+    rootsec.geometry("700x500")  # resolution of window after opening the window
+    rootsec.iconbitmap("icon.ico")
+    rootsec.title("Game of life - text input")
+
+
+    def printInput():
+        inp = inputtxt.get(1.0, "end-1c")
+        lbl.config(text = "Provided Input: "+inp)
+
+    # TextBox Creation
+    inputtxt = tk.Text(rootsec,
+                   height = 20,
+                   width = 50)
+
+    inputtxt.pack()
+
+    def back():
+        rootsec.withdraw()
+
+    def strt():  # NOT WORKING YET - ADD IF FUNCTION FOR VALID INPUT, change 0 and o TO O, save to txt, start test.m and then game_of_life.m
+        pass
+    # Button Creation
+    back_btn = tk.Button(rootsec, width=12, height=2, text="CLOSE", font="Raleway", bg="#FC5B30", command=back)
+    back_btn.place(x=100, y=400)
+
+    strt_btn = tk.Button(rootsec, width=12, height=2, text="START", font="Raleway", bg="#00FF13", command=strt)
+    strt_btn.place(x=450, y=400)
+
+    # Label Creation
+    lbl = tk.Label(rootsec, text = "")
+    lbl.pack()
+
+
+    rootsec.mainloop()
+###########################################################################################
+###########################################################################################
 
 # START BUTTON
 start_btn = tk.Button(root, width=12, height=2, text="START", font="Raleway", bg="#00FF13", command=start)
@@ -129,7 +169,7 @@ info_btn.place(x=550, y=70)
 
 # QUIT BUTTON
 quit_btn = tk.Button(root, width=12, height=2, text="QUIT", font="Raleway", bg="#FC5B30", command=quit2)
-quit_btn.place(x=550, y=490)
+quit_btn.place(x=550, y=600)
 
 # Pulsar BUTTON
 pulsar_btn = tk.Button(root, width=12, height=2, text="Pulsar", font="Raleway", command=pulsar)
@@ -146,6 +186,10 @@ copper_btn.place(x=550, y=210)
 # CLEAR BUTTON
 clear_btn = tk.Button(root, width=12, height=2, text="CLEAR", font="Raleway", bg="#FFFFFF", command=clear)
 clear_btn.place(x=550, y=140)
+
+# WIKI INPUT BUTTON
+clear_btn = tk.Button(root, width=12, height=2, text="TEXT INPUT", font="Raleway", bg="#FBE3CC", command=textinput)
+clear_btn.place(x=550, y=500)
 
 # informative text line
 T = tk.Text(root, height=2, width=30)
