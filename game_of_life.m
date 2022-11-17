@@ -9,46 +9,50 @@ clear; close all; clc; format long g
 
 % % Structures
 
-cross_repeater = [0 1 0
-                  1 1 1
-                  0 0 0];
+%cross_repeater = [0 1 0
+%                  1 1 1
+%                  0 0 0];
 % 3x3
               
-cross_oscilator = [1 1 1];
+%cross_oscilator = [1 1 1];
 % 1 x 3
 
-toad = [0 1 1 1
-        1 1 1 0];
+%toad = [0 1 1 1
+%        1 1 1 0];
 % 2x4
 
-glider = [1 1 1
-          0 0 1
-          0 1 0];
+%glider = [1 1 1
+%          0 0 1
+%v          0 1 0];
 % 3x3
 
-clover = [0 0 0 1 0 1 0 0 0
-          0 1 1 1 0 1 1 1 0
-          1 0 0 0 1 0 0 0 1
-          1 0 1 0 0 0 1 0 1
-          0 1 1 0 1 0 1 1 0
-          0 0 0 0 0 0 0 0 0
-          0 1 1 0 1 0 1 1 0
-          1 0 1 0 0 0 1 0 1
-          1 0 0 0 1 0 0 0 1
-          0 1 1 1 0 1 1 1 0
-          0 0 0 1 0 1 0 0 0];
+%clover = [0 0 0 1 0 1 0 0 0
+%          0 1 1 1 0 1 1 1 0
+%          1 0 0 0 1 0 0 0 1
+%          1 0 1 0 0 0 1 0 1
+%          0 1 1 0 1 0 1 1 0
+%          0 0 0 0 0 0 0 0 0
+%          0 1 1 0 1 0 1 1 0
+%          1 0 1 0 0 0 1 0 1
+%          1 0 0 0 1 0 0 0 1
+%          0 1 1 1 0 1 1 1 0
+%          0 0 0 1 0 1 0 0 0];
 % 11x9
 
 nic = [0];
 % 1x1
+fileID2 = fopen("gens.txt", "r");
+gen = fscanf(fileID2,"%u");
 
+fileID3 = fopen("rand.txt", "r");
+rnd = fscanf(fileID3, "%u");  
 % % % ----------------------------------------------
 % % % Input
 size_field = 50;     % Parameter čtvercove matici NxN
 size_dot = 18;       % Pro grafiku - velkost bunek
-i = 2500;               % Pocet nahodnych zivych bunek
-pocet_iterace = 1000;  % Pocet generaci
-structure = cross_repeater;  % Vkladanie struktur (="name")
+i = rnd;               % Pocet nahodnych zivych bunek
+pocet_iterace = gen;  % Pocet generaci
+structure = importFileFinal();  % Vkladanie struktur (="name")
 speed = 0.15;         % Predstavuje kolko jednotiek trva obnovenie okna[sec]
 
 % --------------------------------------------------
