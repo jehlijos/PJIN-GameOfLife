@@ -3,7 +3,6 @@ clear; close all; clc; format long g
 %%%%%%%%TO-DO%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%
 %1.Nahodne i         %
-%2.Lepsi input       %
 %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%
 
@@ -45,14 +44,18 @@ fileID2 = fopen("gens.txt", "r");
 gen = fscanf(fileID2,"%u");
 
 fileID3 = fopen("rand.txt", "r");
-rnd = fscanf(fileID3, "%u");  
+rnd = fscanf(fileID3, "%u"); 
+
+fileIDdata = fopen("data.txt", "r");
+data = fscanf(fileIDdata, "%c"); 
+data = str2num(data)
 % % % ----------------------------------------------
 % % % Input
 size_field = 50;     % Parameter čtvercove matici NxN
 size_dot = 18;       % Pro grafiku - velkost bunek
 i = rnd;               % Pocet nahodnych zivych bunek
 pocet_iterace = gen;  % Pocet generaci
-structure = importFileFinal();  % Vkladanie struktur (="name")
+structure = data  % Vkladanie struktur (="name")
 speed = 0.15;         % Predstavuje kolko jednotiek trva obnovenie okna[sec]
 
 % --------------------------------------------------
