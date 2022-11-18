@@ -14,4 +14,4 @@ Instructions are available from info.html or through blue button in main.py <br>
 **game_of_life.m** - _Main MATLAB script that generates window with new generations_ <br>
 **info.html** - _Help in English_ <br>
 **info2.html** - _Help in Czech_ <br>
-**test.m** - _Work in progress_
+
