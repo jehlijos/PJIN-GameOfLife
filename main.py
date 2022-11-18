@@ -13,6 +13,7 @@ import webbrowser
 from functools import partial
 import time
 
+
 # tkinter window
 root = tk.Tk()
 root.geometry("700x700")  # resolution of window after opening the app
@@ -49,8 +50,38 @@ def quit2():  # function to quit the app connected to red quit button
         exit()
 
 def start():  # function to save starting configuration into txt file after pressing green start button
+    global A
+    file = open("textinput.txt", "w")
+    file.write("0")
+    file.close()
     file = open("data.txt", "w")
     content = str(A)
+    print(content)
+    content = content.replace("[", "")
+    content = content.replace("]", "")
+    content = content.replace(",", "")
+    content = content[:42] + "\n " + content[42:]
+    content = content[:86] + "\n " + content[86:]
+    content = content[:130] + "\n " + content[130:]
+    content = content[:174] + "\n " + content[174:]
+    content = content[:218] + "\n " + content[218:]
+    content = content[:262] + "\n " + content[262:]
+    content = content[:306] + "\n " + content[306:]
+    content = content[:350] + "\n " + content[350:]
+    content = content[:394] + "\n " + content[394:]
+    content = content[:438] + "\n " + content[438:]
+    content = content[:482] + "\n " + content[482:]
+    content = content[:526] + "\n " + content[526:]
+    content = content[:570] + "\n " + content[570:]
+    content = content[:614] + "\n " + content[614:]
+    content = content[:658] + "\n " + content[658:]
+    content = content[:702] + "\n " + content[702:]
+    content = content[:746] + "\n " + content[746:]
+    content = content[:790] + "\n " + content[790:]
+    content = content[:834] + "\n " + content[834:]
+    content = content[:878] + "\n " + content[878:]
+    content = content[:922] + "\n " + content[922:]
+    content = " " + content
     file.write(content)
     file.close()
     file = open("gens.txt", "w")
@@ -64,7 +95,7 @@ def start():  # function to save starting configuration into txt file after pres
     time.sleep(1)
     eng = matlab.engine.start_matlab()
     eng.game_of_life(nargout=0)
-    print(A)
+
 
 
 def clear():  # function to set all buttons to white and all numbers in matrix A to 0
@@ -127,9 +158,8 @@ def textinput():
     rootsec.title("Game of life - text input")
 
 
-    def printInput():
-        inp = inputtxt.get(1.0, "end-1c")
-        lbl.config(text = "Provided Input: "+inp)
+
+
 
     # TextBox Creation
     inputtxt = tk.Text(rootsec,
@@ -137,12 +167,32 @@ def textinput():
                    width = 50)
 
     inputtxt.pack()
-
+    inputtxt.insert(tk.END,"O.. \n.OO \nOO.")
     def back():
         rootsec.withdraw()
 
     def strt():  # NOT WORKING YET - ADD IF FUNCTION FOR VALID INPUT, change 0 and o TO O, save to txt, start test.m and then game_of_life.m
-        pass
+        inp = inputtxt.get(1.0, "end-1c")
+        inp = inp.replace("0", "O")
+        inp = inp.replace("o" , "O")
+        inp = inp.replace("," , ".")
+        file = open("textinput.txt", "w")
+        file.write("1")
+        file.close()
+        inp = inp.replace("." , "0")
+        inp = inp.replace("O" , "1")
+        print(inp)
+        all_binary = all(c in '01 \n' for c in inp)
+        if not all_binary:
+            roottet = tk.Tk()
+            roottet.geometry("300x100")  # resolution of window after opening the window
+            roottet.iconbitmap("icon.ico")
+            roottet.title("INVALID INPUT")
+            stitek=Label(roottet, text=u"INVALID INPUT", font="CourierNew 24", fg="red")
+            stitek.pack(padx=20, pady=10)
+            roottet.mainloop()
+        else:
+            pass
     # Button Creation
     back_btn = tk.Button(rootsec, width=12, height=2, text="CLOSE", font="Raleway", bg="#FC5B30", command=back)
     back_btn.place(x=100, y=400)
@@ -151,7 +201,7 @@ def textinput():
     strt_btn.place(x=450, y=400)
 
     # Label Creation
-    lbl = tk.Label(rootsec, text = "")
+    lbl = tk.Label(rootsec, text = "Input your configuration where . is dead cell and O is alive")
     lbl.pack()
 
 
@@ -195,6 +245,7 @@ clear_btn.place(x=550, y=500)
 T = tk.Text(root, height=2, width=30)
 T.insert(tk.END, "This app requires MATLAB R2022b to work.")
 T.place(x=0, y=675, width=330)
+T.config(state= DISABLED)
 
 # starting values of scales
 gg = DoubleVar()
