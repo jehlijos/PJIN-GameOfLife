@@ -13,5 +13,5 @@ Instructions are available from info.html or through blue button in main.py <br>
 **main.py** - _Main app, generates data.txt, gens.txt and rand.txt - these files are used as input into game_of_life.m that is atumatically started_ <br>
 **game_of_life.m** - _Main MATLAB script that generates window with new generations_ <br>
 **info.html** - _Help in English_ <br>
-**info2.html** - _Help in Czech_ <br>
-
+**info2.html** - _Help in Czech_ <br> <br><br>
+This app requires MATLAB R2022b and Python 3.10 to work!
