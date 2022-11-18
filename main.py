@@ -56,7 +56,6 @@ def start():  # function to save starting configuration into txt file after pres
     file.close()
     file = open("data.txt", "w")
     content = str(A)
-    print(content)
     content = content.replace("[", "")
     content = content.replace("]", "")
     content = content.replace(",", "")
@@ -168,31 +167,44 @@ def textinput():
 
     inputtxt.pack()
     inputtxt.insert(tk.END,"O.. \n.OO \nOO.")
-    def back():
+
+    def back():  # cancel button
         rootsec.withdraw()
 
-    def strt():  # NOT WORKING YET - ADD IF FUNCTION FOR VALID INPUT, change 0 and o TO O, save to txt, start test.m and then game_of_life.m
+    def strt():  # REPAIR IF INPUT CONTAINS NAN VALUES
         inp = inputtxt.get(1.0, "end-1c")
         inp = inp.replace("0", "O")
         inp = inp.replace("o" , "O")
         inp = inp.replace("," , ".")
+        inp = inp.replace(" " , "")
         file = open("textinput.txt", "w")
         file.write("1")
         file.close()
         inp = inp.replace("." , "0")
         inp = inp.replace("O" , "1")
-        print(inp)
         all_binary = all(c in '01 \n' for c in inp)
         if not all_binary:
-            roottet = tk.Tk()
+            def bck2():
+                roottet.destroy()
+            roottet = tk.Tk()  # pop up window with invalid input message
             roottet.geometry("300x100")  # resolution of window after opening the window
             roottet.iconbitmap("icon.ico")
             roottet.title("INVALID INPUT")
             stitek=Label(roottet, text=u"INVALID INPUT", font="CourierNew 24", fg="red")
             stitek.pack(padx=20, pady=10)
+            bck2_btn = tk.Button(roottet, width=4, height=1, text="OK", font="Raleway", bg="#FFFFFF", command=bck2)
+            bck2_btn.place(x=125, y=50)
             roottet.mainloop()
         else:
-            pass
+            inp = " ".join(inp) # if input is valid saves it to txt and runs matlab
+            inp = " " + inp
+            print(inp)
+            file = open("data2.txt", "w")
+            file.write(inp)
+            file.close()
+            time.sleep(1)
+            eng = matlab.engine.start_matlab()
+            eng.game_of_life(nargout=0)
     # Button Creation
     back_btn = tk.Button(rootsec, width=12, height=2, text="CLOSE", font="Raleway", bg="#FC5B30", command=back)
     back_btn.place(x=100, y=400)
@@ -201,13 +213,13 @@ def textinput():
     strt_btn.place(x=450, y=400)
 
     # Label Creation
-    lbl = tk.Label(rootsec, text = "Input your configuration where . is dead cell and O is alive")
+    lbl = tk.Label(rootsec, text = "Input your configuration where . is dead cell and O is alive \n Set number of generations and random alive cells in previous panel")
     lbl.pack()
-
 
     rootsec.mainloop()
 ###########################################################################################
 ###########################################################################################
+
 
 # START BUTTON
 start_btn = tk.Button(root, width=12, height=2, text="START", font="Raleway", bg="#00FF13", command=start)
