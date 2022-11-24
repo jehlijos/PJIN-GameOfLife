@@ -4,7 +4,7 @@
 Mady by Josef Jehlička, Jakub Zamazal, Philip Otto, Petr Kareš <br>
 For CTU in Prague, Faculty of Civil Engineering, Department Of Geomatics, as product of school subject Project - Informatics <br>
 Created by connecting Tkinter python library with MATLAB script <br>
-
+_SQLite databse with preset configurations soon to be added!_
 ## How to use
 All user input and controls are available from main.py <br>
 Instructions are available from info.html or through blue button in main.py <br>
