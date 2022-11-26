@@ -20,46 +20,43 @@ root.geometry("700x700")  # resolution of window after opening the app
 root.title("Game of life")
 root.iconbitmap("icon.ico")
 
-
 canvas = tk.Canvas(root, height=201, width=201)
 canvas.grid(columnspan=21, rowspan=21)  # grid for 21x21 buttons
 
-
-A = []        # matrix to save (list)
+A = []  # matrix to save (list)
 btn_r = {}  # dictionary of buttons
 
 
-def click(num):  # function for clicking on squares, changing 0 to 1 / 1 to 0 in matrix A and colors of the pressed buttons
+def click(
+        num):  # function for clicking on squares, changing 0 to 1 / 1 to 0 in matrix A and colors of the pressed buttons
     if A[num] == 0:
-       A[num] = 1
-       btn_r[num].configure(bg="black", fg="white")
+        A[num] = 1
+        btn_r[num].configure(bg="black", fg="white")
     else:
-       A[num] = 0
-       btn_r[num].configure(bg = "white", fg="black")
+        A[num] = 0
+        btn_r[num].configure(bg="white", fg="black")
 
 
-for ctr in range(21*21):  # creating buttons
+for ctr in range(21 * 21):  # creating buttons
     rw, col = divmod(ctr, 21)
-    btn_r[ctr]=tk.Button(root, width=2, bg = "white",
-              command=partial(click, ctr))
+    btn_r[ctr] = tk.Button(root, width=2, bg="white",
+                           command=partial(click, ctr))
     btn_r[ctr].grid(column=col, row=rw, sticky="nsew")
     A.append(0)
 
 
 def quit2():  # function to quit the app connected to red quit button
-        exit()
+    exit()
+
 
 def start():  # function to save starting configuration into txt file after pressing green start button
     global A
-    file = open("textinput.txt", "w")
-    file.write("0")
-    file.close()
     file = open("data.txt", "w")
     content = str(A)
     content = content.replace("[", "")
     content = content.replace("]", "")
     content = content.replace(",", "")
-    content = content[:42] + "\n " + content[42:]
+    content = content[:42] + "\n " + content[42:]  # creating lines from single one
     content = content[:86] + "\n " + content[86:]
     content = content[:130] + "\n " + content[130:]
     content = content[:174] + "\n " + content[174:]
@@ -82,7 +79,7 @@ def start():  # function to save starting configuration into txt file after pres
     content = content[:922] + "\n " + content[922:]
     content = " " + content
     file.write(content)
-    file.close()
+    file.close()  # saving to .txt
     file = open("gens.txt", "w")
     content2 = gen
     file.write(content2)
@@ -92,14 +89,13 @@ def start():  # function to save starting configuration into txt file after pres
     file.write(content3)
     file.close()
     time.sleep(1)
-    eng = matlab.engine.start_matlab()
+    eng = matlab.engine.start_matlab()  # starting .m file
     eng.game_of_life(nargout=0)
-
 
 
 def clear():  # function to set all buttons to white and all numbers in matrix A to 0
     A = []
-    for x in range(21*21):
+    for x in range(21 * 21):
         btn_r[x].configure(bg="white", fg="black")
         A.append(0)
 
@@ -111,10 +107,11 @@ def info():  # function that opens html with help
 def penta():  # function that generates predefined configuration called Pentadecathlon
     global A
     A = []
-    for x in range(21*21):
+    for x in range(21 * 21):
         btn_r[x].configure(bg="white", fg="black")
         A.append(0)
-    list = [197,198,199,200,201,202,203,204,218,220,221,222,223,225,239,240,241,242,243,244,245,246]
+    list = [197, 198, 199, 200, 201, 202, 203, 204, 218, 220, 221, 222, 223, 225, 239, 240, 241, 242, 243, 244, 245,
+            246]
     for y in range(len(list)):
         A[list[y]] = 1
         btn_r[list[y]].configure(bg="black", fg="white")
@@ -123,11 +120,12 @@ def penta():  # function that generates predefined configuration called Pentadec
 def copper():  # function that generates predefined configuration called Copperhead
     global A
     A = []
-    for x in range(21*21):
+    for x in range(21 * 21):
         btn_r[x].configure(bg="white", fg="black")
         A.append(0)
-    list = [175,176,195,198,215,216,219,220,236,237,240,241,257,259,260,262,280,281,299,304,319,320,325,326,385,386,405,
-            408,426,429]
+    list = [175, 176, 195, 198, 215, 216, 219, 220, 236, 237, 240, 241, 257, 259, 260, 262, 280, 281, 299, 304, 319,
+            320, 325, 326, 385, 386, 405,
+            408, 426, 429]
     for y in range(len(list)):
         A[list[y]] = 1
         btn_r[list[y]].configure(bg="black", fg="white")
@@ -136,14 +134,16 @@ def copper():  # function that generates predefined configuration called Copperh
 def pulsar():  # function that generates predefined configuration called Pulsar
     global A
     A = []
-    for x in range(21*21):
+    for x in range(21 * 21):
         btn_r[x].configure(bg="white", fg="black")
         A.append(0)
-    list = [90,91,92,96,97,98,130,135,137,142,151,156,158,163,172,177,179,184,195,196,197,201,202,203,237,238,239,243,
-            244,245,256,261,263,268,277,282,284,289,298,303,305,310,342,343,344,348,349,350]
+    list = [90, 91, 92, 96, 97, 98, 130, 135, 137, 142, 151, 156, 158, 163, 172, 177, 179, 184, 195, 196, 197, 201, 202,
+            203, 237, 238, 239, 243,
+            244, 245, 256, 261, 263, 268, 277, 282, 284, 289, 298, 303, 305, 310, 342, 343, 344, 348, 349, 350]
     for y in range(len(list)):
         A[list[y]] = 1
         btn_r[list[y]].configure(bg="black", fg="white")
+
 
 ###########################################################################################
 # TEXT INPUT WINDOW (text from wiki)
@@ -156,55 +156,56 @@ def textinput():
     rootsec.iconbitmap("icon.ico")
     rootsec.title("Game of life - text input")
 
-
-
-
-
     # TextBox Creation
     inputtxt = tk.Text(rootsec,
-                   height = 20,
-                   width = 50)
+                       height=20,
+                       width=50)
 
     inputtxt.pack()
-    inputtxt.insert(tk.END,"O.. \n.OO \nOO.")
+    inputtxt.insert(tk.END, "O.. \n.OO \nOO.")
 
     def back():  # cancel button
         rootsec.withdraw()
 
-    def strt():  # REPAIR IF INPUT CONTAINS NAN VALUES
-        inp = inputtxt.get(1.0, "end-1c")
-        inp = inp.replace("0", "O")
-        inp = inp.replace("o" , "O")
-        inp = inp.replace("," , ".")
-        inp = inp.replace(" " , "")
-        file = open("textinput.txt", "w")
-        file.write("1")
-        file.close()
-        inp = inp.replace("." , "0")
-        inp = inp.replace("O" , "1")
-        all_binary = all(c in '01 \n' for c in inp)
+    def strt():  # start button
+        inp = inputtxt.get(1.0, "end-1c")  # getting values
+        inp = inp.replace("0", "O")  # replacing similar symbols
+        inp = inp.replace("o", "O")
+        inp = inp.replace(",", ".")
+        inp = inp.replace(" ", "")
+        inp = inp.replace(".", "0")  # replacing symbols with 0s and 1s
+        inp = inp.replace("O", "1")
+        inp = inp.splitlines()  # adds zeros so final matrix is rectangular
+        ml = len(max(inp, key=len))
+        for lines in range(len(inp)):  # fixing so matrix is rectangular, adding 0s
+            inp[lines] = inp[lines].ljust(ml, "0")
+            inp[lines] = inp[lines]+"\n"
+        inp2 = "".join(inp)
+        inp = inp2
+        all_binary = all(c in '01 \n' for c in inp)  # input check
         if not all_binary:
             def bck2():
                 roottet.destroy()
+
             roottet = tk.Tk()  # pop up window with invalid input message
             roottet.geometry("300x100")  # resolution of window after opening the window
             roottet.iconbitmap("icon.ico")
             roottet.title("INVALID INPUT")
-            stitek=Label(roottet, text=u"INVALID INPUT", font="CourierNew 24", fg="red")
+            stitek = Label(roottet, text=u"INVALID INPUT", font="CourierNew 24", fg="red")
             stitek.pack(padx=20, pady=10)
             bck2_btn = tk.Button(roottet, width=4, height=1, text="OK", font="Raleway", bg="#FFFFFF", command=bck2)
             bck2_btn.place(x=125, y=50)
             roottet.mainloop()
         else:
-            inp = " ".join(inp) # if input is valid saves it to txt and runs matlab
+            inp = " ".join(inp)  # if input is valid saves it to txt and runs matlab
             inp = " " + inp
-            print(inp)
-            file = open("data2.txt", "w")
+            file = open("data.txt", "w")
             file.write(inp)
             file.close()
             time.sleep(1)
             eng = matlab.engine.start_matlab()
             eng.game_of_life(nargout=0)
+
     # Button Creation
     back_btn = tk.Button(rootsec, width=12, height=2, text="CLOSE", font="Raleway", bg="#FC5B30", command=back)
     back_btn.place(x=100, y=400)
@@ -213,10 +214,13 @@ def textinput():
     strt_btn.place(x=450, y=400)
 
     # Label Creation
-    lbl = tk.Label(rootsec, text = "Input your configuration where . is dead cell and O is alive \n Set number of generations and random alive cells in previous panel")
+    lbl = tk.Label(rootsec,
+                   text="Input your configuration where . is dead cell and O is alive \n Set number of generations and random alive cells in previous panel")
     lbl.pack()
 
     rootsec.mainloop()
+
+
 ###########################################################################################
 ###########################################################################################
 
@@ -257,7 +261,7 @@ clear_btn.place(x=550, y=500)
 T = tk.Text(root, height=2, width=30)
 T.insert(tk.END, "This app requires MATLAB R2022b to work.")
 T.place(x=0, y=675, width=330)
-T.config(state= DISABLED)
+T.config(state=DISABLED)
 
 # starting values of scales
 gg = DoubleVar()
@@ -283,7 +287,7 @@ gbtn = tk.Button(root, width=3, height=1, text="save", font="Raleway", command=g
 gbtn.place(x=30, y=610)
 
 # random scale
-r = Scale(root, from_=0, to=50, orient=HORIZONTAL, label="number of random alive cells",variable=rr)
+r = Scale(root, from_=0, to=50, orient=HORIZONTAL, label="number of random alive cells", variable=rr)
 r.place(x=220, y=550, width=170)
 rbtn = tk.Button(root, width=3, height=1, text="save", font="Raleway", command=getrnd)
 rbtn.place(x=250, y=610)
