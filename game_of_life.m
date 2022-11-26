@@ -46,27 +46,19 @@ gen = fscanf(fileID2,"%u");
 fileID3 = fopen("rand.txt", "r");
 rnd = fscanf(fileID3, "%u"); 
 
-fileID4 = fopen("textinput.txt", "r");
-txtinput = fscanf(fileID4, "%u"); 
 
 fileIDdata = fopen("data.txt", "r");
 data = fscanf(fileIDdata, "%c"); 
 data = str2num(data);
 
-fileIDdata = fopen("data2.txt", "r");
-data2 = fscanf(fileIDdata, "%c")    ;
-data2 = str2num(data2)
 % % % ----------------------------------------------
 % % % Input
 size_field = 50;     % Parameter čtvercove matici NxN
 size_dot = 18;       % Pro grafiku - velkost bunek
 i = rnd;               % Pocet nahodnych zivych bunek
 pocet_iterace = gen;  % Pocet generaci
-if txtinput == 1
-    structure= data2;  % Vkladanie struktur (="name")
-else
-    structure = data ;
-end
+structure = data ;
+
 
 speed = 0.70;         % Predstavuje kolko jednotiek trva obnovenie okna[sec]
 
