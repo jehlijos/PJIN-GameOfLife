@@ -4,6 +4,7 @@
 # Copperhead, Pentadecathlon and Pulsar buttons will create predefined combinations of black/white buttons and 1/1 in matrix
 # gbtn and rbtn are user inputs (scales) for saving number of generations and random numbers to txt file
 # text input button opens new window to paste input from wiki
+# music starts with program, pause button implemented
 
 # import
 import matlab.engine
@@ -12,7 +13,15 @@ from tkinter import *
 import webbrowser
 from functools import partial
 import time
+import os
+from pygame import mixer
+from PIL import Image
+from PIL import ImageTk
 
+musicon = True
+mixer.init()
+mixer.music.load(os.path.join("Music", "music.mp3"))
+mixer.music.play(loops=-1)
 
 # tkinter window
 root = tk.Tk()
@@ -91,6 +100,19 @@ def start():  # function to save starting configuration into txt file after pres
     time.sleep(1)
     eng = matlab.engine.start_matlab()  # starting .m file
     eng.game_of_life(nargout=0)
+
+
+def music():  # function to mute music
+    global musicon  # Icon by www.wishforge.games on freeicons.io
+
+    if musicon is True:  # pasuing musing
+        musicon = False
+        mixer.music.pause()
+        music_btn.configure(image=img2)  # icon change
+    else:  # unpausing music
+        musicon = True
+        mixer.music.unpause()
+        music_btn.configure(image=img)
 
 
 def clear():  # function to set all buttons to white and all numbers in matrix A to 0
@@ -179,7 +201,7 @@ def textinput():
         ml = len(max(inp, key=len))
         for lines in range(len(inp)):  # fixing so matrix is rectangular, adding 0s
             inp[lines] = inp[lines].ljust(ml, "0")
-            inp[lines] = inp[lines]+"\n"
+            inp[lines] = inp[lines] + "\n"
         inp2 = "".join(inp)
         inp = inp2
         all_binary = all(c in '01 \n' for c in inp)  # input check
@@ -256,6 +278,17 @@ clear_btn.place(x=550, y=140)
 # WIKI INPUT BUTTON
 clear_btn = tk.Button(root, width=12, height=2, text="TEXT INPUT", font="Raleway", bg="#FBE3CC", command=textinput)
 clear_btn.place(x=550, y=500)
+
+# MUTE MUSIC BUTTON
+# Icon by www.wishforge.games on freeicons.io
+img = Image.open("sound1.png")  # sound on icon image load
+img = img.resize((48, 48))  # resizing the image
+img = ImageTk.PhotoImage(img)
+img2 = Image.open("sound2.png")  # sound off icon image load
+img2 = img2.resize((48, 48))  # resizing the image
+img2 = ImageTk.PhotoImage(img2)
+music_btn = tk.Button(root, width=48, height=48, bg="#FFFFFF", image=img, command=music)
+music_btn.place(x=585, y=425)
 
 # informative text line
 T = tk.Text(root, height=2, width=30)
