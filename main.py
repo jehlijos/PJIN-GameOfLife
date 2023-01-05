@@ -320,9 +320,15 @@ gbtn = tk.Button(root, width=3, height=1, text="save", font="Raleway", command=g
 gbtn.place(x=30, y=610)
 
 # random scale
-r = Scale(root, from_=0, to=50, orient=HORIZONTAL, label="number of random alive cells", variable=rr)
+r = Scale(root, from_=0, to=400, orient=HORIZONTAL, label="number of random alive cells", variable=rr)
 r.place(x=220, y=550, width=170)
 rbtn = tk.Button(root, width=3, height=1, text="save", font="Raleway", command=getrnd)
 rbtn.place(x=250, y=610)
 
 root.mainloop()
+
+
+# V jebgr guvf pbqr. Bayl zr. Ab bar ryfr urycrq. V nyfb qvq gur ugzy cntrf.
+# Ohg vg vf abg orpnh fr bs zl grnzngrf ynmvarff be hajvyyvatarff. V whfg tbg fghpx va vg sbe qnlf naq ralwblrq vg.
+# Gurl qvq terng wbo va zngyno fxevcg.
+# -- wbfrs wruyvpxn <3
