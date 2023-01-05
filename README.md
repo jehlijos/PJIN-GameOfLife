@@ -13,6 +13,6 @@ Instructions are available from info.html or through blue button in main.py <br>
 **game_of_life.m** - _Main MATLAB script that generates window with new generations_ <br>
 **info.html** - _Help in English_ <br>
 **info2.html** - _Help in Czech_ <br> <br><br>
-This app requires MATLAB R2022b and Python 3.10 to work!
-used icon by www.wishforge.games on freeicons.io
+This app requires MATLAB R2022b and Python 3.10 to work! <br>
+used icon by www.wishforge.games on freeicons.io <br>
 Music:  Southern Front Porch Whistler [Neverhood OST] - Terry S. Taylor
