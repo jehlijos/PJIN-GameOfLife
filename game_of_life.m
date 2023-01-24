@@ -60,7 +60,7 @@ pocet_iterace = gen;  % Pocet generaci
 structure = data ;
 
 
-speed = 0.70;         % Predstavuje kolko jednotiek trva obnovenie okna[sec]
+speed = 0.20;         % Predstavuje kolko jednotiek trva obnovenie okna[sec]
 
 % --------------------------------------------------
 
@@ -93,14 +93,13 @@ Y_P = size_field/2;
 A(X_P:X_P+(x_sz)-1,Y_P:Y_P+(y_sz)-1) = structure;
 
 
-
 % Plot pred
 Plot_pred = figure('Name','Life','NumberTitle','off','windowstate','fullscreen');
-spy(A,'g',size_dot)
-grid on; grid minor;
 
-% axis([0 size_field 0 size_field])
-
+pcolor(A)
+colormap(summer(2))
+axis ij
+axis square
 
                         % Zaciatok 1 iterace
                         for iterace = 1:pocet_iterace
@@ -221,9 +220,11 @@ end
 
 % Plot po pravidlach
 
-spy(G,'g',size_dot)
-grid on; grid minor;
-% axis([0 size_field 0 size_field])
+pcolor(G)
+colormap(summer(2))
+axis ij
+axis square
+
 drawnow
 pause(speed)
 
@@ -232,3 +233,4 @@ G = zeros(length(A));
 
 
                         end
+
