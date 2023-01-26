@@ -7,7 +7,7 @@
 # music starts with program, pause button implemented
 
 # import
-import matlab.engine
+import subprocess
 import tkinter as tk
 from tkinter import *
 import webbrowser
@@ -98,8 +98,7 @@ def start():  # function to save starting configuration into txt file after pres
     file.write(content3)
     file.close()
     time.sleep(1)
-    eng = matlab.engine.start_matlab()  # starting .m file
-    eng.game_of_life(nargout=0)
+    subprocess.call("generator.exe", shell=True)
 
 
 def music():  # function to mute music
@@ -120,6 +119,10 @@ def clear():  # function to set all buttons to white and all numbers in matrix A
     for x in range(21 * 21):
         btn_r[x].configure(bg="white", fg="black")
         A.append(0)
+
+
+def download():  # function to open hypertext link to website with Matlab runtime download
+    webbrowser.open("https://www.mathworks.com/products/compiler/matlab-runtime.html")
 
 
 def info():  # function that opens html with help
@@ -225,8 +228,7 @@ def textinput():
             file.write(inp)
             file.close()
             time.sleep(1)
-            eng = matlab.engine.start_matlab()
-            eng.game_of_life(nargout=0)
+            subprocess.call("generator.exe", shell=True)
 
     # Button Creation
     back_btn = tk.Button(rootsec, width=12, height=2, text="CLOSE", font="Raleway", bg="#FC5B30", command=back)
@@ -292,9 +294,12 @@ music_btn.place(x=585, y=425)
 
 # informative text line
 T = tk.Text(root, height=2, width=30)
-T.insert(tk.END, "This app requires MATLAB R2022b to work.")
-T.place(x=0, y=675, width=330)
+T.insert(tk.END, "This app requires MATLAB runtime 9.9 to work.")
+T.place(x=0, y=675, width=370)
 T.config(state=DISABLED)
+# download button
+dwnld = tk.Button(root, height=1, width=7, text="download",  font="Raleway", command=download)
+dwnld.place(x=380, y=665,)
 
 # starting values of scales
 gg = DoubleVar()
