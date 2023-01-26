@@ -17,6 +17,7 @@ import os
 from pygame import mixer
 from PIL import Image
 from PIL import ImageTk
+import sys
 
 musicon = True
 mixer.init()
@@ -55,7 +56,9 @@ for ctr in range(21 * 21):  # creating buttons
 
 
 def quit2():  # function to quit the app connected to red quit button
-    exit()
+    root.quit()
+    root.destroy()
+    sys.exit()
 
 
 def start():  # function to save starting configuration into txt file after pressing green start button
