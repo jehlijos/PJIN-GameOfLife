@@ -19,7 +19,7 @@ from PIL import Image
 from PIL import ImageTk
 import sys
 
-musicon = True
+musicon = True  # starts music
 mixer.init()
 mixer.music.load(os.path.join("Music", "music.mp3"))
 mixer.music.play(loops=-1)
@@ -101,7 +101,7 @@ def start():  # function to save starting configuration into txt file after pres
     file.write(content3)
     file.close()
     time.sleep(1)
-    subprocess.call("generator.exe", shell=True)
+    subprocess.call("generator.exe", shell=True)  # runs matlab exe
 
 
 def music():  # function to mute music
