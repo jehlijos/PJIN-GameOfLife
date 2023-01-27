@@ -14,6 +14,6 @@ Download here: https://www.mathworks.com/products/compiler/matlab-runtime.html <
 **game_of_life.m**(compiled to generator.exe) - _Main MATLAB script that generates window with new generations_ <br>
 **info.html** - _Help in English_ <br>
 **info2.html** - _Help in Czech_ <br> <br><br>
-If u want to run this app with Python - MATLAB R2022b and Python 3.10 is required. <br>
+
 used icon by www.wishforge.games on freeicons.io <br>
 Music:  Southern Front Porch Whistler [Neverhood OST] - Terry S. Taylor
