@@ -118,6 +118,7 @@ def music():  # function to mute music
 
 
 def clear():  # function to set all buttons to white and all numbers in matrix A to 0
+    global A
     A = []
     for x in range(21 * 21):
         btn_r[x].configure(bg="white", fg="black")
