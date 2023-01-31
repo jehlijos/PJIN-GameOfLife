@@ -17,3 +17,7 @@ Download here: https://www.mathworks.com/products/compiler/matlab-runtime.html <
 
 used icon by www.wishforge.games on freeicons.io <br>
 Music:  Southern Front Porch Whistler [Neverhood OST] - Terry S. Taylor
+<br>
+        <a href="http://www.wtfpl.net/"><img
+       src="http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-1.png"
+       width="88" height="31" alt="WTFPL" /></a>
