@@ -94,7 +94,7 @@ A(X_P:X_P+(x_sz)-1,Y_P:Y_P+(y_sz)-1) = structure;
 
 
 % Plot pred
-Plot_pred = figure('Name','Life','NumberTitle','off','windowstate','fullscreen');
+Plot_pred = figure('Name','Life','NumberTitle','off');
 
 pcolor(A)
 colormap(summer(2))
