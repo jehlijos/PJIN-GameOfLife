@@ -3,57 +3,56 @@
   <head>
   <meta http-equiv="content-type" content="text/html; charset=utm-8">
   <meta name="generator" content="PSPad editor, www.pspad.com">
-  <title>GAME OF LIFE</title>
+  <title>Hra života</title>
   <link rel="icon" type="image/x-icon" href="icon.ico">
   </head>
   <body>
-  <h1>GAME OF LIFE</h1>
-  <a href="info2.html">
-  <img src="cz.png" width="40" height="20" style="vertical-align:middle;margin:-40px 300px" >
+  <h1>HRA ŽIVOTA</h1>
+  <a href="info.html">
+  <img src="en.png" width="40" height="20" style="vertical-align:middle;margin:-40px 300px" >
   </a>
   <br>
-  <p1>The Game of Life is a cellular automaton devised by the British mathematician John Horton Conway in 1970.<br> </p1>
-  <p2>This is zero-player game. All you can do is to create an initial configuration and observe how it evolves.<br><br></p2>
-  <br> <b> This app requires MATLAB runtime 9.9 to work! </b>
-  <br> Download here:  <a href=> https://www.mathworks.com/products/compiler/matlab-runtime.html </a> <br><br>
-  <p3><b>CONTROLS</b><br> </p3>
+  <p1>Hra života je celulární automat, který vymyslel britský matematik John Horton Conway v roce 1970.<br> </p1>
+  <p2>Tato hra se hraje sama. Vše co můžete dělat je zadat původní konfiguraci a sledovat, jak se vyvýjí.<br><br></p2>
+  <br> <b> Tato aplikace potřebuje ke své funkci MATLAB runtime 9.9 </b>
+  <br> Stáhni zde:  <a href=> https://www.mathworks.com/products/compiler/matlab-runtime.html </a> <br><br>
+  <p3><b>OVLÁDÁNÍ</b><br> </p3>
   <img src="btn1.gif" width="124" height="100">
-  <p4><br> By clicking white(dead) cell you make it black(live)<br><br> Start button will start your game. Quit button will quit the app.<br> Clear button will set all cells to white.<br>Other buttons will create some predefined configuration for the game like so: </p4>
+  <p4><br> Kliknutím na bílou(mrtvou) buňku, z ní uděláte černou(živou).<br><br> Tlačítko Start spustí vaši hru. Tlačítko Quit ukončí aplikaci.<br> Tlačítko Clear nastaví všechny buňky na bílou barvu.<br>Další tlačítka nastaví nějakou z předdefinovaných konfigurací pro hru, a to následovně:</p4>
   <br>
   <img src="btn2.png" width="219" height="175">
   
   <img src="btn3.png" width="219" height="175">
   
   <img src="btn4.png" width="219" height="175">
-  <p5><br>There are two scales(sliders) wich control number of generated generations and number of randomly generated alive cells.<br> Your selected value on scale must be confirmed via save button under it.<br></p5>
+   <p5><br> Jsou zde též dva posuvníky. Jeden nastavuje počet tvořených generací(number of generations)<br> a druhý počet buněk, které se náhodně vytvoří jako živé (number of random alive cells)<br> Vaše zvolené hodnoty na posuvnících musí být potvrezeny talčítky "Save" pod nimi.<br></p5>
   <img src="scales.png" width="506" height="132">
   <br><br>
-   TEXT INPUT button opens new window:<br>
-  <img src="textinput.png" width="506" height="320"><br>
-  Here you are able to input your configuration in text format<br>
-  Character O indicates alive cell and . indicates dead cell.<br> 
-  You can get your inspiration at: <a href="https://conwaylife.com/wiki/Category:Lists_of_patterns"> https://conwaylife.com/wiki/Category:Lists_of_patterns </a><br> <br> 
-  Number of generated generations and number of randomly generated alive cells can be set in previous window<br>
-  CLOSE button closes the window.<br>
-  START button runs the game with your configuration.
+  tlačítko TEXT INPUT otevře nové okno:<br>
+    <img src="textinput.png" width="506" height="320"><br>
+  Zde můžete vkládat vaši konfiguraci v textovém formátu.<br>
+  Znak O značí živou buňku a znak . značí mrtvou buňku.<br>  
+  Inspirovat se můžete zde: <a href="https://conwaylife.com/wiki/Category:Lists_of_patterns"> https://conwaylife.com/wiki/Category:Lists_of_patterns </a><br> <br>
+  Počet tvořených generací a počet náhodně generovaných buněk se nastavuje v předchozím okně pomocí posuvníků.<br>
+  Tlačítko CLOSE okno zavře. <br> 
+  Tlačítko START spustí hru s vaší konfigurací.<br> 
+  <img src="exitwindow.png" width="350" height="350"><br>
+  Jakmile hra přestane vytvářet nové generace, ukončete okno křížkem v pravo nahoře.
   <br><br><br>
-  <p6><b>RULES</b><br> </p6>
-  The universe of the Game of Life is two-dimensional orthogonal grid of square cells, each of which is in one of two possible states,live or dead. <br>
-   Every cell interacts with its eight neighbours, which are the cells that are horizontally, vertically, or diagonally adjacent.<br>
-    At each step in time, the following transitions occur:<br><br>
-    1. Any live cell with fewer than two live neighbours dies, as if by underpopulation.<br>
-    2. Any live cell with two or three live neighbours lives on to the next generation.<br>
-    3. Any live cell with more than three live neighbours dies, as if by overpopulation.<br>
-    4. Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.<br><br>
-    These rules, which compare the behavior of the automaton to real life, can be condensed into the following:<br><br>
-    1. Any live cell with two or three live neighbours survives.<br>
-    2. Any dead cell with three live neighbours becomes a live cell.<br>
-    3. All other live cells die in the next generation. Similarly, all other dead cells stay dead<br>
-    <br>
-     The first generation is created by applying the above rules simultaneously to every cell in the seed, live or dead;<br> births and deaths occur simultaneously, and the discrete moment at which this happens is sometimes called a tick. <br>
-      Each generation is a pure function of the preceding one. The rules continue to be applied repeatedly to create further generations.<br><br><br><br>
-      Made by Josef Jehlička, Jakub Zamazal, Philip Otto, Petr Kareš <br>
-      For CTU in Prague, Faculty of Civil Engineering, Department Of Geomatics, as product of school subject Project - Informatics
+  <p6><b>PRAVIDLA</b><br> </p6>
+  Vesmír Hry života je dvourozměrná síť čtvercových buňek. Každá z těchto buňek může být živá nebo mrtvá <br>
+   Každá z buněk interaguje s jejími osmi sousedy. To jsou buňky připojeny vertikálně,horizontálně, či diagonálně<br>
+    Každým krokem ve hře nastanou následující situace:<br><br>
+    1. Každá živá buňka s méně než dvěma živými sousedy zemře.<br>
+    2. Každá živá buňka se dvěma nebo třemi živými sousedy zůstává žít<br>
+    3. Každá živá buňka s více než třemi živými sousedy zemře.<br>
+    4. Každá mrtvá buňka s právě třemi živými sousedy oživne.<br><br>
+    
+     První generace je tvořena aplikací zmíněných pravidel pro všechny buňky zároveň.<br> Zrození i smrti buňek probíhají současně.
+      Každá generace je čistě funkcí té předchozí.<br> Pravidla se opakovaně pouívají, aby tvořila další a další generace.<br><br><br><br>
+      Vytvořil: Josef Jehlička, Jakub Zamazal, Philip Otto, Petr Kareš <br>
+      Pro: ČVUT v Praze, Fakulta stavební, Katedra geomatiky, V rámci předmětu Projekt informatika (PJIN)
+ 
       <br>
         <a href="http://www.wtfpl.net/"><img
        src="http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-1.png"
