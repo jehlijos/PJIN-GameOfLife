@@ -1,7 +1,7 @@
 <img src="gameOfLifeBanner.png" alt="Game of Life banner"/> <br>
 
 # PJIN-GameOfLife
-Mady by Josef Jehlička, Jakub Zamazal, Philip Otto, Petr Kareš <br>
+Made by Josef Jehlička, Jakub Zamazal, Philip Otto, Petr Kareš <br>
 For CTU in Prague, Faculty of Civil Engineering, Department Of Geomatics, as product of school subject Project - Informatics <br>
 Created by connecting Tkinter python library with MATLAB script <br>
 ## How to use
